@@ -2,6 +2,8 @@
 
 import express from 'express'
 
+import { gorillas } from './data/gorilla-data.js'
+
 // Create Express app
 
 const app = express()
@@ -17,11 +19,17 @@ app.set('view engine', 'ejs')
 // Mount routes
 
 app.get('/', function(req, res){
-  res.send('<h1>Hello, friend</h1>')
+  res.redirect('/home')
 })
 
 app.get('/home', function(req, res){
   res.render('home')
+})
+
+app.get('/gorillas', function(req, res){
+  res.render('gorillas/index', {
+    gorillas: gorillas
+  })
 })
 
 // Tell the app to listen on port 3000
